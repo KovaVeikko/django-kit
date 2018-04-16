@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 # download the package lists from the repositories
 apt-get update
@@ -11,8 +12,18 @@ ln -sf /usr/bin/python3.4 /usr/bin/python
 # install pip
 apt-get install -y python3-pip
 
-# --- Required python modules ---
+# install mysql
+echo mysql-server mysql-server/root_password select "vagrant" | debconf-set-selections
+echo mysql-server mysql-server/root_password_again select "vagrant" | debconf-set-selections
+apt-get install -y mysql-server-5.5 libmysqlclient-dev
+
+# install python modules
 pip3 install -r /vagrant/requirements.txt
+
+# create database
+mysql -uroot -pvagrant -e "CREATE DATABASE djangokit;"
+mysql -uroot -pvagrant -e "CREATE USER 'djangokit'@'localhost' IDENTIFIED BY 'djangokit';"
+mysql -uroot -pvagrant -e "GRANT ALL PRIVILEGES on *.* TO 'djangokit'@'localhost';"
 
 # tasks
 cd /vagrant && python manage.py makemigrations --noinput
