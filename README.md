@@ -19,7 +19,7 @@ The development environment is a <a href=https://www.vagrantup.com/>Vagrant</a>-
 virtual ubuntu server. The first time the VM is launched, Vagrant installs
 all the required packages and starts the application. This may take a while.
 
-When Vagrant has finished installing, it runs on:
+When Vagrant has finished installing, the app is running on:
 ``` 
 127.0.0.1:9000
 ```  
