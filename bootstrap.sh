@@ -27,6 +27,7 @@ mysql -uroot -pvagrant -e "GRANT ALL PRIVILEGES on *.* TO 'djangokit'@'localhost
 
 # tasks
 cd /vagrant && python manage.py makemigrations --noinput
+cd /vagrant && python manage.py makemigrations App --noinput
 cd /vagrant && python manage.py migrate
 
 # Run server and static file watcher in screen
